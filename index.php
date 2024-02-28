@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 d-flex justify-content-between">
-                        <h2 class="pull-left">Liste des utilisateurs</h2>
+                        <h2 class="pull-left">Liste des Idées</h2>
                         <a href="create.php" class="btn btn-success"><i class="bi bi-plus"></i> Ajouter</a>
                     </div>
                     <?php 
@@ -32,7 +32,7 @@
 require_once "config.php";
                     
                     /* select query execution */
-                    $sql = "SELECT * FROM Utilisateurs";
+                    $sql = "SELECT * FROM Idee";
                     
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
@@ -40,9 +40,15 @@ require_once "config.php";
                                 echo "<thead>";
                                     echo "<tr>";
                                         echo "<th>#</th>";
-                                        echo "<th>Nom</th>";
-                                        echo "<th>Ecole</th>";
-                                        echo "<th>Age</th>";
+                                        echo "<th>Titre</th>";
+                                        echo "<th>Description</th>";
+                                        echo "<th>Date Soumission</th>";
+                                        echo "<th>Etat</th>";
+                                        echo "<th>Date de l'Etat</th>";
+                                        echo "<th>Statut</th>";
+                                        echo "<th>Date du Statu</th>";
+                                        echo "<th>Utilisateur</th>";
+                                        echo "<th>Cathégorie</th>";
                                         echo "<th>Action</th>";
                                     echo "</tr>";
                                 echo "</thead>";
@@ -50,13 +56,15 @@ require_once "config.php";
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
                                         echo "<td>" . $row['id'] . "</td>";
-                                        echo "<td>" . $row['nom'] . "</td>";
-                                        echo "<td>" . $row['prenom'] . "</td>";
-                                        echo "<td>" . $row['adresse'] . "</td>";
-                                        echo "<td>" . $row['tel'] . "</td>";
-                                        echo "<td>" . $row['mail'] . "</td>";
-                                        echo "<td>" . $row['mot_passe'] . "</td>";
-                                        echo "<td>" . $row['profession'] . "</td>";
+                                        echo "<td>" . $row['titre'] . "</td>";
+                                        echo "<td>" . $row['description'] . "</td>";
+                                        echo "<td>" . $row['date_soumission'] . "</td>";
+                                        echo "<td>" . $row['etat'] . "</td>";
+                                        echo "<td>" . $row['date_etat'] . "</td>";
+                                        echo "<td>" . $row['est_validee'] . "</td>";
+                                        echo "<td>" . $row['date_validation'] . "</td>";
+                                        echo "<td>" . $row['id_utilisateur'] . "</td>";
+                                        echo "<td>" . $row['id_categorie'] . "</td>";
                                         echo "<td>";
                                             echo '<a href="read.php?id='. $row['id'] .'" class="me-3" ><span class="bi bi-eye"></span></a>';
                                             echo '<a href="update.php?id='. $row['id'] .'" class="me-3" ><span class="bi bi-pencil"></span></a>';
