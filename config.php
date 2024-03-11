@@ -6,17 +6,19 @@ $serveur_db = 'localhost';
 $utilisateur_db = 'root';
 $mot_de_passe_db = '';
 $nom_db = 'Projet_ITS';
+// Créer une connexion à la base de données
+$connexion = new mysqli($serveur_db, $utilisateur_db, $mot_de_passe_db, $nom_db);
 
-try {
-    // Connexion à la base de données avec PDO
-    $connexion = new mysqli($serveur_db, $utilisateur_db, $mot_de_passe_db,$nom_db);
-
-    // Paramétrage de la connexion pour afficher les erreurs en cas de problème
-    //$connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    echo "Connexion à la base de données réussie.";
-} catch (mysqliException $e) {
-    die("Erreur de connexion à la base de données : " . $e->getMessage());
+// Vérifier la connexion
+/*if ($connexion->connect_error) {
+    die("Erreur de connexion à la base de données : " . $connexion->connect_error);
 }
+
+echo "Connexion à la base de données réussie.";
+
+// ... Vous pouvez maintenant effectuer des opérations sur la base de données ...
+
+// Fermer la connexion (ceci est facultatif car la connexion sera automatiquement fermée à la fin du script)
+$connexion->close();*/
 
 ?>
