@@ -1,3 +1,8 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,7 +14,7 @@
 
     <style>
         .wrapper{
-            width: 700px;
+            width: 1000px;
             margin: 0 auto;
         }
         table tr td:last-child{
@@ -28,27 +33,22 @@
                         <a href="create.php" class="btn btn-success"><i class="bi bi-plus"></i> Ajouter</a>
                     </div>
                     <?php 
-/* Inclure le fichier config */
-require_once "config.php";
-                    
+                        /* Inclure le fichier config */
+                        require_once "config.php";
+                                            
                     /* select query execution */
-                    $sql = "SELECT * FROM Idee";
+                    $sql = "SELECT id, titre, description, date_soumission, id_categorie FROM Idee";
                     
-                    if($result = mysqli_query($link, $sql)){
+                    if($result = mysqli_query($connexion, $sql)){
                         if(mysqli_num_rows($result) > 0){
                             echo '<table class="table table-bordered table-striped">';
                                 echo "<thead>";
                                     echo "<tr>";
-                                        echo "<th>#</th>";
+                                        echo "<th>Identifiant</th>";
                                         echo "<th>Titre</th>";
                                         echo "<th>Description</th>";
-                                        echo "<th>Date Soumission</th>";
-                                        echo "<th>Etat</th>";
-                                        echo "<th>Date de l'Etat</th>";
-                                        echo "<th>Statut</th>";
-                                        echo "<th>Date du Statu</th>";
-                                        echo "<th>Utilisateur</th>";
-                                        echo "<th>Cathégorie</th>";
+                                        echo "<th>Date_Soumission</th>";
+                                        echo "<th>Identifiant_Catégorie</th>";
                                         echo "<th>Action</th>";
                                     echo "</tr>";
                                 echo "</thead>";
@@ -59,11 +59,6 @@ require_once "config.php";
                                         echo "<td>" . $row['titre'] . "</td>";
                                         echo "<td>" . $row['description'] . "</td>";
                                         echo "<td>" . $row['date_soumission'] . "</td>";
-                                        echo "<td>" . $row['etat'] . "</td>";
-                                        echo "<td>" . $row['date_etat'] . "</td>";
-                                        echo "<td>" . $row['est_validee'] . "</td>";
-                                        echo "<td>" . $row['date_validation'] . "</td>";
-                                        echo "<td>" . $row['id_utilisateur'] . "</td>";
                                         echo "<td>" . $row['id_categorie'] . "</td>";
                                         echo "<td>";
                                             echo '<a href="read.php?id='. $row['id'] .'" class="me-3" ><span class="bi bi-eye"></span></a>';
@@ -82,9 +77,6 @@ require_once "config.php";
                     } else{
                         echo "Oops! Une erreur est survenue";
                     }
- 
-                    /* Fermer connection */
-                    mysqli_close($link);
                     ?>
                 </div>
             </div>        
